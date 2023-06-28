@@ -12,7 +12,7 @@ RUN apt-get -y update \
     && add-apt-repository universe
 RUN apt-get -y update
 RUN apt-get -y install python3.6
-RUN apt-get -y install python3-pip libsm6 libxext6 libxrender-dev libegl1-mesa-dev libgl-dev wget unzip nginx ffmpeg
+RUN apt-get -y install python3-pip libsm6 libxext6 libxrender-dev libegl1-mesa-dev libgl-dev wget unzip ffmpeg
 
 # Set the working directory in the container
 WORKDIR /app
@@ -29,10 +29,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Copy your custom Nginx configuration file
-COPY nginx.conf /etc/nginx/conf.d
+# COPY nginx.conf /etc/nginx/conf.d
 
 # Expose the port that Nginx will listen on
 EXPOSE 80
 
-# Start Nginx and run uWSGI with the Flask app
+# Start uWSGI with the Flask app
 CMD ["/bin/sh", "start_script.sh"]
